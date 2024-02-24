@@ -7,6 +7,7 @@
 	<version>2.0.0</version>
 	<name>ezsecurity</name>
 	<description>a security framework</description>
+	<url>https://github.com/ezfx/ezsecurity</url>
 
 	<properties>
 		<spring.version>5.3.1</spring.version>
