@@ -1,0 +1,255 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>io.github.ezfx</groupId>
+	<artifactId>ezsecurity</artifactId>
+	<packaging>jar</packaging>
+	<version>2.0.0</version>
+	<name>ezsecurity</name>
+	<description>a security framework</description>
+
+	<properties>
+		<spring.version>5.3.1</spring.version>
+		<hibernate.version>4.3.5.Final</hibernate.version>
+		<mybatis.version>3.4.0</mybatis.version>
+		<slf4j.version>1.7.21</slf4j.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+			<version>4.12</version>
+		</dependency>
+
+		<!-- Log start -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.12</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.12</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- Log end -->
+
+		<!-- commons start -->
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.11</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.15</version>
+		</dependency>
+
+		<!-- commons end -->
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- spring 3.0 start -->
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- spring 3.0 end -->
+
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>3.4.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+		
+		<dependency>
+	<groupId>commons-io</groupId>
+	<artifactId>commons-io</artifactId>
+	<version>2.5</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+			<version>3.14.9</version>
+		</dependency>
+
+	</dependencies>
+	<build>
+		<testSourceDirectory>src/example/java</testSourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>11</source>
+					<target>11</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+            <!-- Javadoc -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.4</version>
+                <configuration>
+                    <!--指定编码为UTF-8-->
+                    <encoding>UTF-8</encoding>
+                    <aggregate>true</aggregate>
+                    <charset>UTF-8</charset>
+                    <docencoding>UTF-8</docencoding>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration> <!-- add this to disable checking -->
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- source -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+			<plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-gpg-plugin</artifactId>
+			  <version>1.5</version>
+			  <executions>
+				<execution>
+				  <id>sign-artifacts</id>
+				  <phase>package</phase>
+				  <goals>
+					<goal>sign</goal>
+				  </goals>
+				</execution>
+			  </executions>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.central</groupId>
+				<artifactId>central-publishing-maven-plugin</artifactId>
+				<version>0.3.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<publishingServerId>central</publishingServerId>
+					<tokenAuth>true</tokenAuth>
+				</configuration>
+			</plugin>
+            <!-- checksum -->
+            <plugin>
+                <groupId>net.ju-n.maven.plugins</groupId>
+                <artifactId>checksum-maven-plugin</artifactId>
+                <version>1.3</version>
+                <executions>
+                    <execution>
+                        <id>checksum-maven-plugin-files</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>files</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <fileSets>
+                        <fileSet>
+                            <directory>${project.build.directory}</directory>
+                            <includes>
+                                <include>*.jar</include>
+                                <include>*.pom</include>
+                            </includes>
+                        </fileSet>
+                    </fileSets>
+                    <algorithms>
+                        <algorithm>SHA-1</algorithm>
+                        <algorithm>MD5</algorithm>
+                    </algorithms>
+                </configuration>
+            </plugin>
+		</plugins>
+
+	</build>
+	
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public License v2.1</name>
+			<url>https://opensource.org/license/LGPL-2.1</url>
+		</license>
+	</licenses>
+	
+	<scm>
+		<tag>master</tag>
+		<url>https://github.com/ezfx/ezsecurity.git</url>
+		<connection>scm:git:https://github.com/ezfx/ezsecurity.git</connection>
+		<developerConnection>scm:git:git@github.com:ezfx/ezsecurity.git</developerConnection>
+	</scm>
+	
+	<developers>
+		<developer>
+			<id>wangjg</id>
+			<name>wangjg</name>
+			<email>ezdev01@163.com</email>
+			<url>https://github.com/ezfx</url>
+		</developer>
+	</developers>
+	
+</project>
