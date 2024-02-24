@@ -237,7 +237,7 @@
 	</licenses>
 	
 	<scm>
-		<tag>master</tag>
+		<tag>main</tag>
 		<url>https://github.com/ezfx/ezsecurity.git</url>
 		<connection>scm:git:https://github.com/ezfx/ezsecurity.git</connection>
 		<developerConnection>scm:git:git@github.com:ezfx/ezsecurity.git</developerConnection>
